@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Harga Mobil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* bg-gray-100 */
+        }
+        .input-section-card { /* Menggantikan .input-group dengan styling baru */
+            background-color: #ffffff; /* bg-white */
+            margin-bottom: 2rem; /* mb-8 */
+            padding: 1.5rem; /* p-6 */
+            border-radius: 1rem; /* rounded-2xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+        }
+        .input-label-style { /* Menggantikan .input-label */
+            display: block;
+            color: #374151; /* text-gray-700 */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .input-field-style { /* Menggantikan .input-field */
+            width: 100%;
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem; /* px-4 */
+            padding-top: 0.75rem; /* py-3 */
+            padding-bottom: 0.75rem; /* py-3 */
+            border: 1px solid #d1d5db; /* border border-gray-300 (lebih tegas dari gray-200) */
+            border-radius: 0.75rem; /* rounded-xl */
+            background-color: #ffffff; /* bg-white */
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 200ms;
+        }
+        .input-field-style:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+            --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+            box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+            --tw-ring-color: #60a5fa; /* ring-blue-400 */
+            border-color: transparent; /* border-transparent pada focus */
+        }
+        .input-field-style:hover {
+            background-color: #f9fafb; /* hover:bg-gray-50 */
+        }
+        select.input-field-style { /* Styling tambahan untuk select agar konsisten */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.15em 1.15em;
+            padding-right: 2.5rem;
+        }
+        .section-title-style { /* Menggantikan .section-title */
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            color: #1f2937; /* text-gray-800 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            padding-bottom: 0.5rem; /* pb-2 */
+            border-bottom: 1px solid #e5e7eb; /* border-b border-gray-200 */
+        }
+        .gradient-button-style { /* Menggantikan .gradient-bg untuk tombol */
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen py-12 px-4">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-3">Kalkulator Prediksi Harga Mobil</h1>
+            <p class="text-gray-600 text-lg">Dapatkan estimasi harga mobil bekas berdasarkan data pasar terkini</p>
+        </div>
+        
+        <form id="predictionForm" class="space-y-8">
+            <div class="input-section-card">
+                <h2 class="section-title-style">📍 Informasi Dasar</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                    <div>
+                        <label class="input-label-style" for="location">
+                            Lokasi Penjualan
+                        </label>
+                        <select id="location" name="location" required class="input-field-style">
+                            <option value="">Pilih Provinsi</option>
+                            <option value="Aceh">Aceh</option>
+                            <option value="Sumatera Utara">Sumatera Utara</option>
+                            <option value="Sumatera Barat">Sumatera Barat</option>
+                            <option value="Riau">Riau</option>
+                            <option value="Kepulauan Riau">Kepulauan Riau</option>
+                            <option value="Jambi">Jambi</option>
+                            <option value="Sumatera Selatan">Sumatera Selatan</option>
+                            <option value="Kepulauan Bangka Belitung">Kepulauan Bangka Belitung</option>
+                            <option value="Bengkulu">Bengkulu</option>
+                            <option value="Lampung">Lampung</option>
+                            <option value="DKI Jakarta">DKI Jakarta</option>
+                            <option value="Banten">Banten</option>
+                            <option value="Jawa Barat">Jawa Barat</option>
+                            <option value="Jawa Tengah">Jawa Tengah</option>
+                            <option value="DI Yogyakarta">DI Yogyakarta</option>
+                            <option value="Jawa Timur">Jawa Timur</option>
+                            <option value="Bali">Bali</option>
+                            <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+                            <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+                            <option value="Kalimantan Barat">Kalimantan Barat</option>
+                            <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                            <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                            <option value="Kalimantan Timur">Kalimantan Timur</option>
+                            <option value="Kalimantan Utara">Kalimantan Utara</option>
+                            <option value="Sulawesi Utara">Sulawesi Utara</option>
+                            <option value="Gorontalo">Gorontalo</option>
+                            <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+                            <option value="Sulawesi Barat">Sulawesi Barat</option>
+                            <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                            <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+                            <option value="Maluku">Maluku</option>
+                            <option value="Maluku Utara">Maluku Utara</option>
+                            <option value="Papua">Papua</option>
+                            <option value="Papua Barat">Papua Barat</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="input-label-style" for="year">
+                            Tahun Produksi
+                        </label>
+                        <input type="number" id="year" name="year" min="1990" max="2025" required 
+                            placeholder="Contoh: 2020" class="input-field-style">
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-section-card">
+                <h2 class="section-title-style">Spesifikasi Kendaraan</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                    <div>
+                        <label class="input-label-style" for="fuel">
+                            Jenis Bahan Bakar
+                        </label>
+                        <select id="fuel" name="fuel" required class="input-field-style">
+                            <option value="">Pilih Bahan Bakar</option>
+                            <option value="Petrol">Pertalite</option>
+                            <option value="Petrol">Pertamax</option>
+                            <option value="Diesel">Solar</option>
+                            <option value="Electric">Listrik</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="input-label-style" for="transmission">
+                            Jenis Transmisi
+                        </label>
+                        <select id="transmission" name="transmission" required class="input-field-style">
+                            <option value="">Pilih Transmisi</option>
+                            <option value="Manual">Manual</option>
+                            <option value="Automatic">Otomatis</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="input-label-style" for="engine">
+                            Kapasitas Mesin (CC)
+                        </label>
+                        <input type="number" id="engine" name="engine" min="0" required 
+                            placeholder="Contoh: 1500" class="input-field-style">
+                    </div>
+                    <div>
+                        <label class="input-label-style" for="power">
+                            Tenaga Mesin (bhp)
+                        </label>
+                        <input type="number" id="power" name="power" step="0.1" min="0" required 
+                            placeholder="Contoh: 120.5" class="input-field-style">
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-section-card">
+                <h2 class="section-title-style">Kondisi & Penggunaan</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                    <div>
+                        <label class="input-label-style" for="kilometers">
+                            Kilometer Tempuh
+                        </label>
+                        <input type="number" id="kilometers" name="kilometers" min="0" required 
+                            placeholder="Contoh: 50000" class="input-field-style">
+                    </div>
+                    <div>
+                        <label class="input-label-style" for="mileage">
+                            Konsumsi BBM (km/l)
+                        </label>
+                        <input type="number" id="mileage" name="mileage" step="0.1" min="0" required 
+                            placeholder="Contoh: 12.5" class="input-field-style">
+                    </div>
+                    <div>
+                        <label class="input-label-style" for="owner">
+                            Riwayat Kepemilikan
+                        </label>
+                        <select id="owner" name="owner" required class="input-field-style">
+                            <option value="">Pilih Riwayat</option>
+                            <option value="First">Tangan Pertama</option>
+                            <option value="Second">Tangan Kedua</option>
+                            <option value="Third">Tangan Ketiga</option>
+                            <option value="Fourth & Above">Tangan Keempat atau Lebih</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="input-label-style" for="seats">
+                            Kapasitas Penumpang
+                        </label>
+                        <input type="number" id="seats" name="seats" min="2" max="10" required 
+                            placeholder="Contoh: 5" class="input-field-style">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <button type="submit"
+                    class="w-full gradient-button-style text-white py-4 px-8 rounded-xl hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200 text-lg font-semibold shadow-lg hover:shadow-xl">
+                    Hitung Prediksi Harga
+                </button>
+            </div>
+        </form>
+
+        <div id="result" class="mt-8 p-8 rounded-2xl shadow-lg hidden" style="background-color: #ffffff;">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Hasil Prediksi Harga</h2>
+            <div id="predictedPrice" class="text-4xl font-bold text-blue-600 mb-2"></div>
+            <p class="text-gray-500 text-sm">*Hasil prediksi ini bersifat estimasi berdasarkan data historis pasar</p>
+        </div>
+
+        <div id="error" class="mt-8 p-6 bg-red-50 border border-red-200 text-red-700 rounded-2xl hidden"> {/* Border lebih tegas untuk error */}
+            <p class="font-medium"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            const resultDiv = document.getElementById('result');
+            const errorDiv = document.getElementById('error');
+            const predictedPriceDiv = document.getElementById('predictedPrice');
+
+            submitButton.innerHTML = 'Memproses...';
+            submitButton.disabled = true;
+            resultDiv.classList.add('hidden');
+            errorDiv.classList.add('hidden');
+            
+            const formData = {
+                Location: document.getElementById('location').value,
+                Year: parseInt(document.getElementById('year').value),
+                Kilometers_Driven: parseInt(document.getElementById('kilometers').value),
+                Fuel_Type: document.getElementById('fuel').value,
+                Transmission: document.getElementById('transmission').value,
+                Owner_Type: document.getElementById('owner').value,
+                Mileage_kmpl: parseFloat(document.getElementById('mileage').value),
+                Engine_CC: parseInt(document.getElementById('engine').value),
+                Power_bhp: parseFloat(document.getElementById('power').value),
+                Seats: parseInt(document.getElementById('seats').value)
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/api/predict', { // Pastikan URL ini benar
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultDiv.classList.remove('hidden');
+                    predictedPriceDiv.textContent = `Estimasi Harga: ${data.predicted_price_rupiah}`;
+                } else {
+                    throw new Error(data.error || 'Terjadi kesalahan dalam pemrosesan');
+                }
+            } catch (error) {
+                errorDiv.classList.remove('hidden');
+                errorDiv.querySelector('p').textContent = `Terjadi kesalahan: ${error.message}`;
+            } finally {
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
