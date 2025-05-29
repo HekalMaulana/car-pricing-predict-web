@@ -3,7 +3,7 @@
 Aplikasi web untuk memprediksi harga mobil bekas berdasarkan berbagai fitur dan spesifikasi kendaraan. Aplikasi ini menggunakan model machine learning untuk memberikan estimasi harga yang akurat dalam mata uang Rupiah.
 
 ## Demo
-!(demo preview)[images/demo_preview.png]
+![demo preview](images/demo_preview.png)
 
 ## Fitur
 
